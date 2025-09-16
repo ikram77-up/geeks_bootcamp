@@ -1,0 +1,37 @@
+[
+  {
+    "firstName": "ikram",
+    "lastName": "Habib Allah",
+    "email": "ikramhabiballah77@.com",
+    "location": "Casablanca",
+    "experienceYears": 1,
+    "skills": ["React", "JS", "HTML"],
+    "availabilityDate": "2025-10-01",
+    "stage": "SOURCED",
+    "notes": "Portfolio: …"
+  },
+  {
+    "firstName": "yahya",
+    "lastName": "Habib Allah",
+    "email": "yahyahabiballah@.com",
+    "location": "Casablanca",
+    "experienceYears": 1,
+    "skills": ["React", "Spring boot", "HTML"],
+    "availabilityDate": "2025-11-01",
+    "stage": "SOURCED",
+    "notes": "Quick learner"
+  },
+  {
+    "firstName": "cihan",
+    "lastName": "emirhan",
+    "email": "cihanemirhan@.com",
+    "location": "Casablanca",
+    "experienceYears": 1,
+    "skills": ["SQL", "Spring boot", "HTML"],
+    "availabilityDate": "2025-11-01",
+    "stage": "INTERVIEW",
+    "notes": "Senior candidat"
+  }
+]
+
+

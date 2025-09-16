@@ -1,0 +1,19 @@
+{
+  "FE-Intern-A": [
+    {
+      "firstName": "yahya",
+      "lastName": "Habib Allah",
+      "email": "yahyahabiballah@.com",
+      "location": "Casablanca",
+      "experienceYears": 1,
+      "skills": [
+        "React",
+        "Spring boot",
+        "HTML"
+      ],
+      "availabilityDate": "2025-11-01",
+      "stage": "SOURCED",
+      "notes": "Quick learner"
+    }
+  ]
+}
