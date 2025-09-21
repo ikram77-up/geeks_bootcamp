@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Select a kind of Music</title>
+    </head>
+    <body>
+ <select id="genres">
+  <option value="rock">Rock</option>
+  <option value="blues" selected>Blues</option>
+</select>
+<script>
+    
+    let select = document.getElementById("genres");
+    let corps = document.querySelector('body');
+        let par = document.createElement("p");
+        par.textContent = "option selected is: "+ select.value;
+        corps.appendChild(par);
+    select.addEventListener("change",function(){
+        par.textContent = "option selected is: "+ select.value
+        
+    })
+
+    let opt = document.createElement("option");
+    opt.textContent = "Classic";
+    opt.value= "classic" ; 
+    opt.selected = select;
+    select.appendChild(opt);
+
+</script>
+    </body>
+    </html>
