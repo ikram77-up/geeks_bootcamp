@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+    <title> HTML Form</title>
+</head>
+<body>
+
+<form action="" method="GET">
+    <!-- when the form is submitted with the GET method the data form 
+     each input field is send as key=values pairsin the URL of the browser  
+     for exemple if the user enters devren in the name field and I need help 
+     in the message field URL after submission we look like 
+     page.html?name = devren&message=I need help-->
+    <label for="name">Nom :</label>
+    <input type="text" id="name" name="name" placeholder="your name" required>
+    <br><br>
+
+    
+    <label for="message">Message :</label>
+    <textarea id="message" name="message" rows="5" cols="30" placeholder="your message..." required></textarea>
+    <br><br>
+
+    
+    <button type="submit">Send</button>
+</form>
+
+</body>
+</html>
