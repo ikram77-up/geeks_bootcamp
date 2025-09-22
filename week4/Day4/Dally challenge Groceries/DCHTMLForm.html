@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+    <title> HTML Form</title>
+</head>
+<body>
+
+    <input type="text" id="firstname" name="name"  >
+    <input type="text" id="lastname" name="name"  >
+    <button type="submit">Send</button>
+
+<script>
+  let inputf = document.getElementById("firstname");
+  let inputl = document.getElementById("lastname");
+  let corps = document.querySelector("body");
+  let btn = document.querySelector("button");
+  btn.addEventListener("click",function(){
+    let par = document.createElement("p");
+    let personne = {
+        firstname:inputf.value,
+        lastname : inputl.value,
+    }
+    let json = JSON.stringify(personne);
+    par.textContent = json;
+    corps.appendChild(par);
+
+  })
+
+</script>
+
+</body>
+</html>
