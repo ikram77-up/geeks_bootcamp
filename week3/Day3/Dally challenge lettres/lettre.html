@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<head>
+    <title>lettres</title>
+</head>
+
+<body>
+    <input type="text" id="text">
+    <script>
+        let text = document.getElementById("text");
+        let par = document.createElement("p");
+        par.textContent = text.value;
+        document.body.appendChild(par);
+
+
+        text.addEventListener("input", function (event) {
+            par.textContent = event.target.value.replace(/[^a-zA-Z]/g, "");
+            console.log(par.textContent);
+        }
+        )
+    </script>
+
+</body>
+
+</html>
