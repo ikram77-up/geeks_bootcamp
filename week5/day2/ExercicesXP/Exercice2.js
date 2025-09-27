@@ -1,0 +1,9 @@
+fetch("https://api.giphy.com/v1/gifs/search?q=sun&limit=10&rating=g&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My")
+    .then(Response => Response.json())
+    .then(data => {
+        console.log(data)
+    })
+    .catch(error => {
+        console.log(error)
+    });
+
