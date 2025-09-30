@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <style>
+        body {
+            background: url("https://www.transparenttextures.com/patterns/stardust.png") repeat black;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col items-center justify-center min-h-screen text-white">
+    <div class="text-yellow-400 text-6xl md:text-8xl font-extrabold text-center drop-shadow-lg mt-10 leading-none">
+        STAR<br>WARS
+    </div>
+    <div id="card" class="border-2 border-yellow-400 rounded-xl p-6 mt-10 bg-black/70 w-50 text-center shadow-lg">
+    </div>
+
+    <button id="btn"
+        class="mt-6 px-5 py-2 border-2 border-yellow-400 rounded-lg bg-white text-black font-semibold hover:bg-yellow-400 hover:text-black transition">
+        Find Someone
+    </button>
+    <script src="starwars.js"></script>
+</body>
+
+</html>
