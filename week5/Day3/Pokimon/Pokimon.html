@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex Buttons</title>
+    <style>
+        .logo {
+            display: block;
+            margin-bottom: 20px;
+        }
+
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+            bottom: 170px;
+            left: 240px;
+        }
+
+        .image {
+            display: block;
+            width: 900px;
+
+        }
+
+        .previeus {
+            position: absolute;
+            top: 73%;
+            left: 16%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.031);
+            border-radius: 50%;
+            cursor: pointer;
+            width: 120px;
+            height: 110px;
+        }
+
+        .next {
+            position: absolute;
+            top: 76%;
+            right: 7%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.031);
+            border-radius: 50%;
+            cursor: pointer;
+            width: 120px;
+            height: 110px;
+        }
+
+        .text {
+            position: absolute;
+            top: 15%;
+            right: -120px;
+            transform: translateY(-40%);
+            
+
+        }
+    </style>
+</head>
+
+<body>
+    <img class="logo"
+        src="https://raw.githubusercontent.com/devtlv/studentsGitHub/refs/heads/master/JS/Week%205/Day%205/Mini%20Projects/Mini-Project%202%20-%20Pokedex%20API/logo.png"
+        alt="pokimon">
+
+    <div class="image-container">
+        <img class="image"
+            src="https://github.com/devtlv/studentsGitHub/blob/master/JS/Week%205/Day%205/Mini%20Projects/Mini-Project%202%20-%20Pokedex%20API/pokedex.png?raw=true"
+            alt="pokimondisplay">
+
+
+        <button class=" next"></button>
+        <button class="previeus"></button>
+        <div class="text">
+            <h3> HOW TO USE</h3>
+            <p>pass the green button to get the next pokemon</p>
+            <p>pass the red button to get the previous pokemon</p>
+        </div>
+    </div>
+
+
+    <script src="Pokimon.js"></script>
+</body>
+
+</html>
