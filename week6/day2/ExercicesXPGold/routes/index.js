@@ -20,60 +20,77 @@ router.get("/posts", (req, res) => {
 
 
 router.get("/posts/:id", (req, res) => {
-    const id = parseInt(req.params.id);
-    const post = posts.find(p => p.id === id);
-    if (!post) return res.status(404).json({ message: "Post not found" });
-    res.status(200).json(post);
-});
+    try {
+        const id = parseInt(req.params.id);
+        const post = posts.find(p => p.id === id);
+        if (!post) return res.status(404).json({ message: "Post not found" });
+        res.status(200).json(post);
 
-
-router.post("/posts", (req, res) => {
-    const { title, content } = req.body;
-    if (!title || !content) {
-        return res.status(400).json({ message: "Title and content are required" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
 
-    const newPost = {
-        id: posts.length ? posts[posts.length - 1].id + 1 : 1,
-        title,
-        content,
-        timestamp: new Date(),
-    };
+});
+router.post("/posts", (req, res) => {
+    try {
+        const { title, content } = req.body;
+        if (!title || !content) {
+            return res.status(400).json({ message: "Title and content are required" });
+        }
 
-    posts.push(newPost);
-    res.status(201).json(newPost);
+        const newPost = {
+            id: posts.length ? posts[posts.length - 1].id + 1 : 1,
+            title,
+            content,
+            timestamp: new Date(),
+        };
+
+        posts.push(newPost);
+        res.status(201).json(newPost);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+
 });
 
 
 router.put("/posts/:id", (req, res) => {
-    const id = parseInt(req.params.id);
-    const { title, content } = req.body;
+    try {
+        const id = parseInt(req.params.id);
+        const { title, content } = req.body;
 
-    if (!title || !content) {
-        return res.status(400).json({ message: "Title and content are required" });
+        if (!title || !content) {
+            return res.status(400).json({ message: "Title and content are required" });
+        }
+
+        const post = posts.find(p => p.id === id);
+        if (!post) return res.status(404).json({ message: "Post not found" });
+
+        post.title = title;
+        post.content = content;
+        post.timestamp = new Date();
+
+        res.status(200).json(post);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-
-    const post = posts.find(p => p.id === id);
-    if (!post) return res.status(404).json({ message: "Post not found" });
-
-    post.title = title;
-    post.content = content;
-    post.timestamp = new Date();
-
-    res.status(200).json(post);
 });
 
 
 router.delete("/posts/:id", (req, res) => {
-    const id = parseInt(req.params.id);
-    const index = posts.findIndex(p => p.id === id);
+   try {
+       const id = parseInt(req.params.id);
+       const index = posts.findIndex(p => p.id === id);
 
-    if (index === -1) {
-        return res.status(404).json({ message: "Post not found" });
-    }
+       if (index === -1) {
+           return res.status(404).json({ message: "Post not found" });
+       }
 
-    const deletedPost = posts.splice(index, 1)[0];
-    res.status(200).json(deletedPost);
+       const deletedPost = posts.splice(index, 1)[0];
+       res.status(200).json(deletedPost);
+   } catch (error) {
+    res.status(500).json({ message: error.message });
+   }
 });
 
 export default router;
