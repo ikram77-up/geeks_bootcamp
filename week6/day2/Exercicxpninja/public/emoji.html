@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Search</title>
+</head>
+
+<body>
+    <form id="form">
+        <input type="text" id="search" name="name" placeholder="Search for an emoji...">
+        <select name="emoji" id="emoji"></select>
+        <button type="submit">Search</button>
+    </form>
+    <div id="Message"></div>
+    <script>
+        fetch("/api/emojis")
+            .then(response => response.json())
+            .then(data => {
+                const emojiSelect = document.getElementById('emoji');
+                data.forEach(emoji => {
+                    const option = document.createElement('option');
+                    option.value = emoji;
+                    option.textContent = emoji;
+                    emojiSelect.appendChild(option);
+                });
+            });
+        const form = document.querySelector('form');
+        const messageDiv = document.getElementById('Message');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const formdata = new FormData(form);
+            const name = formdata.get('name');
+            const emoji = formdata.get('emoji');
+            if (!name || !emoji) {
+                messageDiv.textContent = 'Please enter your name and select an emoji.';
+                return;
+            }
+            fetch('/api/greet', {
+                method: 'POST',
+                body: JSON.stringify({ name, emoji }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    messageDiv.textContent = data.message;
+                })
+                .catch(error => console.error(error));
+        });
+    </script>
+</body>
+
+</html>
