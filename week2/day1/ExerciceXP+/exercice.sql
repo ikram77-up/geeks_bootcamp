@@ -29,3 +29,5 @@ select first_name, last_name from students where first_name like '%a';
 select first_name, last_name from students where left(right(first_name, 2),1)='a';
 select first_name, last_name from students where id between 1 and 3;
 select first_name, last_name from students where birth_date >='2000/01/01';
+
+
