@@ -1,0 +1,10 @@
+// server/routes/questionRoutes.js
+import express from 'express';
+import { getQuestion, getCount, checkAnswer } from '../controllers/questionControllers.js';
+const router = express.Router();
+
+router.get('/count', getCount);
+router.get('/:id', getQuestion);
+router.post('/answer', checkAnswer);
+
+export default router;
