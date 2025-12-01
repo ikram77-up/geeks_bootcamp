@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Auth</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-weight: bold;
+            min-height: 20px;
+        }
+
+        .switch-btn {
+            background: none;
+            color: #007bff;
+            border: none;
+            margin-top: 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            text-decoration: underline;
+            padding: 0;
+            width: auto;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div id="register-view">
+            <h2>Register :</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label>First name</label>
+                    <input type="text" id="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label>Last name</label>
+                    <input type="text" id="lastName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="regUsername" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" required>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+
+            <div id="registerMsg" class="message"></div>
+            <button class="switch-btn" onclick="showLogin()">Go to Login</button>
+        </div>
+
+        <div id="login-view" class="hidden">
+            <h2>Login :</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="loginUsername" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+
+            <div id="loginMsg" class="message"></div>
+            <button class="switch-btn" onclick="showRegister()">Go to Register</button>
+        </div>
+
+    </div>
+
+    <script>
+        const API_URL = "http://localhost:8080/api";
+
+
+        function showLogin() {
+            document.getElementById('register-view').classList.add('hidden');
+            document.getElementById('login-view').classList.remove('hidden');
+            document.getElementById('loginMsg').innerText = "";
+        }
+
+        function showRegister() {
+            document.getElementById('login-view').classList.add('hidden');
+            document.getElementById('register-view').classList.remove('hidden');
+            document.getElementById('registerMsg').innerText = "";
+        }
+
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const msgBox = document.getElementById('registerMsg');
+
+            const fullName = document.getElementById('firstName').value + " " + document.getElementById('lastName').value;
+
+            const data = {
+                name: fullName,
+                username: document.getElementById('regUsername').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('regPassword').value
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.status === 201) {
+                    msgBox.innerText = "Hello Your account is now created!";
+                    msgBox.style.color = "green";
+                } else if (response.status === 409) {
+                    msgBox.innerText = "Username already exists";
+                    msgBox.style.color = "red";
+                } else {
+                    msgBox.innerText = "Error creating account";
+                }
+            } catch (err) {
+                console.error(err);
+                msgBox.innerText = "Server error";
+            }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const msgBox = document.getElementById('loginMsg');
+
+            const data = {
+                username: document.getElementById('loginUsername').value,
+                password: document.getElementById('loginPassword').value
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.status === 200) {
+                    msgBox.innerText = `Hi ${result.user.username} welcome back again!`;
+                    msgBox.style.color = "green";
+                } else {
+                    msgBox.innerText = "Username is not registered";
+                    msgBox.style.color = "red";
+                }
+            } catch (err) {
+                console.error(err);
+                msgBox.innerText = "Server error";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
