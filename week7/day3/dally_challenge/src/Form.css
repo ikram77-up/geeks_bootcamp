@@ -1,0 +1,27 @@
+body {
+  font-family: Arial, sans-serif;
+  margin-left: 5px;
+ 
+}
+#form1 {
+  background-color: #e3c08f;
+}
+
+#form2 {
+  background-color: #0e8229;
+}
+
+h2 {
+  background-color: #3b2f2f;
+  color: white;
+  padding: 10px;
+  margin-top:-20px;
+}
+
+.card {
+  border-radius: 8px;
+}
+
+input, select {
+  border: 2px solid #333;
+}
