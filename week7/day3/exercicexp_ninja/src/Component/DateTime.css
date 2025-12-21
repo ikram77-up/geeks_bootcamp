@@ -1,0 +1,78 @@
+/* Background général */
+body {
+  margin: 0;
+  background: #252b34;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+}
+
+/* Container ديال الساعة */
+.clock-container {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin: 60px auto;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #2f3742 0%, #1f2630 70%);
+}
+
+/* YEAR – فوق على اليسار */
+.year {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+/* MONTH – لتحت على اليمين */
+.month {
+  position: absolute;
+  bottom: 20px;
+  right: 25px;
+  font-size: 16px;
+  color: #d0d0d0;
+  transform: rotate(90deg);
+}
+
+/* Center time */
+.center-time {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  text-align: center;
+}
+
+/* Digital clock */
+.center-time h2 {
+  font-size: 36px;
+  letter-spacing: 2px;
+  margin: 0;
+  color: #ffffff;
+}
+
+/* Day & Date */
+.center-time p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #b5b5b5;
+}
+
+/* Decorative compass lines */
+.clock-container::before,
+.clock-container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 220px;
+  background: rgba(255, 255, 255, 0.08);
+  transform-origin: center top;
+}
+
+.clock-container::after {
+  transform: rotate(90deg);
+}
